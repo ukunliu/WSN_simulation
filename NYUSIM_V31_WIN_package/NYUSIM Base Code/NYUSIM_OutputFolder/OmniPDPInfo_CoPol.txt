@@ -1,0 +1,3 @@
+T-R Separation Distance (m)	Received Power (dBm)	Path Loss (dB)	RMS Delay Spread (ns)	K-Factor (dB)	
+           34.9	                    -67.6	           77.6	            0.6	                23.4
+            8.1	                    -61.4	           71.4	           18.9	                -0.8
