@@ -38,6 +38,12 @@ for i = 1: n_rx/2
     end
 end
 
+%%
+pm = propagationModel("raytracing", ...
+    "Method","sbr", ...
+    "MaxNumReflections",3);
+
+rays = raytrace(tx_set, rx_set, pm)
 
 
 %%

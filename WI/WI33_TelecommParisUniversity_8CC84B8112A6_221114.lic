@@ -1,0 +1,169 @@
+##===============================================================================
+## License generated 15-Sep-2022 11:05:55 by C.Harling @192.168.167.92
+## using licensegen v9
+## WI33_TelecommParisUniversity_8CC84B8112A6_221114.lic
+##
+FEATURE wi_gui remcominc 3.3 14-nov-2022 uncounted \
+	HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: Yukun Liu, \
+	yukun.liu@telecom-paris.fr, TelecommParisUniversity" TS_OK \
+	SIGN="1A1F 85A7 8777 775C CFF6 171F 535F 86E3 DAFF 9DFB 52FB \
+	904D 4033 E9CB BD58 1BB2 BE88 748A 1373 7B23 D184 C25E 59F6 \
+	056A 4F20 AD8E 177D 40B6 4AB8 8A50"
+FEATURE wi_gui_diffuse_scattering remcominc 3.3 14-nov-2022 uncounted \
+	HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: Yukun Liu, \
+	yukun.liu@telecom-paris.fr, TelecommParisUniversity" TS_OK \
+	SIGN="0CF7 D5D4 D033 0D6E 0BCC BC4E 5020 ABDF 5124 BB26 D810 \
+	75F6 CB01 32A0 6F4C 0329 1F65 E1B3 729C 1CC8 E9F3 7623 6B82 \
+	5156 ED8A 2FE8 21C3 321F F354 4A9C"
+FEATURE wi_gui_mimo remcominc 3.3 14-nov-2022 uncounted \
+	HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: Yukun Liu, \
+	yukun.liu@telecom-paris.fr, TelecommParisUniversity" TS_OK \
+	SIGN="0DC2 EEC7 0E4C 50D3 4437 5EE6 EC8A A698 D738 8DFD D301 \
+	FDC8 C937 891F 4AAD 1B0A F39A B2AC EB2D 49D8 7275 E671 CE40 \
+	A4C0 A891 9024 9158 CD18 5241 F952"
+FEATURE wi_rxapi_static remcominc 3.3 14-nov-2022 uncounted \
+	HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: Yukun Liu, \
+	yukun.liu@telecom-paris.fr, TelecommParisUniversity" TS_OK \
+	SIGN="177D 2A6E 04C4 8B79 C405 DB73 3AA6 DCFE 991C 3417 30D9 \
+	A672 067D A21D A835 1415 AF3C 7CF7 632C C7F0 D244 826E 6FB8 \
+	181F 679C 01E4 82CB 5865 0A0C 1911"
+FEATURE wi_rxapi_x3d remcominc 3.3 14-nov-2022 uncounted \
+	VENDOR_STRING=max_hw=64 HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: \
+	Yukun Liu, yukun.liu@telecom-paris.fr, \
+	TelecommParisUniversity" TS_OK SIGN="0DF0 C00F B617 A4D5 3F1E \
+	FE5D C3E2 6E80 F0BF 1AD1 FFC2 6018 2713 6370 B744 1838 FDE8 \
+	2A8D 285F 6D19 031E 2D6A 195A 488A BDB2 CD05 40D4 09A0 6C50 \
+	AE32"
+FEATURE wi_rxapi_gpu remcominc 3.3 14-nov-2022 uncounted \
+	VENDOR_STRING=count=1;max_hw=8 HOSTID=8cc84b8112a6 \
+	NOTICE="ISSUED TO: Yukun Liu, yukun.liu@telecom-paris.fr, \
+	TelecommParisUniversity" TS_OK SIGN="0784 C9EE F984 1D8B EB5E \
+	7B58 623B D93E 7D0C 8549 EC8B 99A6 4CEB B2EA C0EB 0AD6 FEAA \
+	727B 3861 5B67 3627 FE4A B93C D342 D0B1 01AD A591 B1BC C0E2 \
+	A6CC"
+FEATURE wi_rxapi_thread remcominc 3.3 14-nov-2022 uncounted \
+	VENDOR_STRING=count=32 HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: \
+	Yukun Liu, yukun.liu@telecom-paris.fr, \
+	TelecommParisUniversity" TS_OK SIGN="0A26 9F9A 0152 6D70 8AB4 \
+	A9E8 BAD1 DF7B 8D8F 5A4D 3673 7848 0B59 018D EE75 05BB B83D \
+	D3F9 EFB2 D7AF F806 31C1 C847 F02E CD71 D2B0 E009 C8F2 F115 \
+	F4EA"
+FEATURE wi_rxapi_diffuse_scattering remcominc 3.3 14-nov-2022 \
+	uncounted VENDOR_STRING=max_hw=64 HOSTID=8cc84b8112a6 \
+	NOTICE="ISSUED TO: Yukun Liu, yukun.liu@telecom-paris.fr, \
+	TelecommParisUniversity" TS_OK SIGN="0891 EE67 75A1 F0F2 C578 \
+	6E9B 692B 1BAC 7F78 D6F8 1A4A C341 8194 06C0 969A 0906 41FE \
+	9F45 2207 DD22 0A36 8EF2 324A 2EC4 23C7 35CA 51FA 4789 91BE \
+	A787"
+FEATURE wi_rxapi_apg_acceleration remcominc 3.3 14-nov-2022 uncounted \
+	VENDOR_STRING=max_hw=64 HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: \
+	Yukun Liu, yukun.liu@telecom-paris.fr, \
+	TelecommParisUniversity" TS_OK SIGN="06E4 7B4D 32C3 DFB3 A38C \
+	09F7 5CD5 4C67 AFBD A0F6 5F3D C7D4 A202 D9E0 5290 18D4 58CA \
+	4D1E E015 4ACF B703 4EB9 377F A08E DD20 1D6C B1A4 D6F8 DB53 \
+	A4EB"
+FEATURE wi_rxapi_mimo remcominc 3.3 14-nov-2022 uncounted \
+	VENDOR_STRING=max_hw=64 HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: \
+	Yukun Liu, yukun.liu@telecom-paris.fr, \
+	TelecommParisUniversity" TS_OK SIGN="100C 341F A058 349B 8FCA \
+	7C09 B07B 48D2 FF77 1B10 8644 3D06 25E3 D263 0500 10BC 9433 \
+	0AE7 F2D2 6EA6 0A01 1601 A25A C80F E4AE 2EAE 228F 635B 2099 \
+	863E"
+FEATURE wi_rxapi_freespace remcominc 3.3 14-nov-2022 uncounted \
+	VENDOR_STRING=max_hw=64 HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: \
+	Yukun Liu, yukun.liu@telecom-paris.fr, \
+	TelecommParisUniversity" TS_OK SIGN="1D5D 50B9 FC59 DCB2 0D90 \
+	CBC9 D923 6AD7 BF54 DF10 A045 3E4E 1BFA EB1B 9DF7 021F F799 \
+	3D91 8216 9C80 E0B9 8029 A694 B20C 3CA1 D917 7D30 7353 FD8B \
+	4138"
+FEATURE wi_rxapi_cost_hata remcominc 3.3 14-nov-2022 uncounted \
+	VENDOR_STRING=max_hw=64 HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: \
+	Yukun Liu, yukun.liu@telecom-paris.fr, \
+	TelecommParisUniversity" TS_OK SIGN="1B3D 05D3 6DC8 C917 695F \
+	4FA1 0EC4 4CAA F93E 489A 0E8F 3245 3762 92A8 90EE 0A39 E78A \
+	23C7 30DD 404F 152D FF43 5D8B 527F AE8D 10B9 2D61 9873 E52A \
+	9983"
+FEATURE wi_rxapi_hata remcominc 3.3 14-nov-2022 uncounted \
+	VENDOR_STRING=max_hw=64 HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: \
+	Yukun Liu, yukun.liu@telecom-paris.fr, \
+	TelecommParisUniversity" TS_OK SIGN="1F64 DE5C 1BF5 F4BE 03DB \
+	0E01 31C0 FDA6 2307 4B99 CE92 EA95 C443 647D CD6C 195F 9193 \
+	98B0 4D57 A570 D8C9 756D 7CEC 4BDD 7D43 3E2E 8EE6 9054 18D3 \
+	A71A"
+FEATURE wi_rxapi_opar remcominc 3.3 14-nov-2022 uncounted \
+	VENDOR_STRING=max_hw=64 HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: \
+	Yukun Liu, yukun.liu@telecom-paris.fr, \
+	TelecommParisUniversity" TS_OK SIGN="053B C33A 67C5 FC56 F12F \
+	F2EA 4AB0 1C25 A99B DA36 F478 E1EC 6D9B 67CD CEC1 00FB 6C93 \
+	88BC 8F28 37F2 9A03 0780 EF77 8B97 FB3B A4A4 1D63 C620 B3ED \
+	599F"
+FEATURE wi_rxapi_triple_path remcominc 3.3 14-nov-2022 uncounted \
+	VENDOR_STRING=max_hw=64 HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: \
+	Yukun Liu, yukun.liu@telecom-paris.fr, \
+	TelecommParisUniversity" TS_OK SIGN="09C5 08B6 1D1A B8AF 18F7 \
+	5C34 0A99 D887 B83A 60C5 1B3C B4D4 509B A3BE BA2C 0F55 86AB \
+	7C51 52E9 0BCE C7DF D27E 405C CBA4 A9D2 654C AE2D 4B28 A348 \
+	9FA4"
+FEATURE wi_rxapi_vpup remcominc 3.3 14-nov-2022 uncounted \
+	VENDOR_STRING=max_hw=64 HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: \
+	Yukun Liu, yukun.liu@telecom-paris.fr, \
+	TelecommParisUniversity" TS_OK SIGN="116B 43DC 2328 965E 527C \
+	831A 2531 A7DB 98EF DB8A C661 3947 913B 6855 DAC4 0641 F794 \
+	6D54 1CF5 58FB C75D 94D0 A3CD 0596 977C BF61 2324 CDB5 6EAE \
+	3A0E"
+FEATURE wi_rxapi_walfisch_ikegami remcominc 3.3 14-nov-2022 uncounted \
+	VENDOR_STRING=max_hw=64 HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: \
+	Yukun Liu, yukun.liu@telecom-paris.fr, \
+	TelecommParisUniversity" TS_OK SIGN="180F F57B 06E9 E0B0 B570 \
+	AFFF B4BA 7003 E167 978B 46C0 7C79 5E49 9D84 06CA 1A93 377E \
+	FBC8 577F 2554 2C5E 3113 89C1 931B 5A43 F9D7 632A 2B4F AADF \
+	F883"
+FEATURE wi_calc remcominc 3.3 14-nov-2022 uncounted \
+	HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: Yukun Liu, \
+	yukun.liu@telecom-paris.fr, TelecommParisUniversity" TS_OK \
+	SIGN="0243 BAEB 27A3 F5B7 B1E6 21B5 05D1 9E6B 6BAA 7AF9 7F11 \
+	5505 BB40 4743 E6E3 1CEA E893 EA99 22CA 4024 8BEC 176B 9AC5 \
+	DF8F 6F82 9C96 3F04 D802 F7F5 6430"
+FEATURE wi_calc_vertical_plane remcominc 3.3 14-nov-2022 uncounted \
+	VENDOR_STRING=max_hw=64 HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: \
+	Yukun Liu, yukun.liu@telecom-paris.fr, \
+	TelecommParisUniversity" TS_OK SIGN="1173 57F5 184C E8F6 1DB4 \
+	297A CCF1 129C 5775 9E70 FD59 7375 EE15 857E 045B 1359 9168 \
+	5DB9 32FF 580B 3C1C 74C6 834A 0B94 67C4 0085 4B7B 7CFA 3C15 \
+	CB3E"
+FEATURE wi_calc_urban_canyon remcominc 3.3 14-nov-2022 uncounted \
+	VENDOR_STRING=max_hw=64 HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: \
+	Yukun Liu, yukun.liu@telecom-paris.fr, \
+	TelecommParisUniversity" TS_OK SIGN="0A15 1671 2682 795B E83E \
+	A6AD 89E0 3067 00B5 52AF EFA4 A948 F3DE 3F0B 5419 1BBF 15D4 \
+	A89D AD18 FDA7 8307 5E70 BFC4 FB06 D1B2 B48C E97B A9AC 4A06 \
+	A4D5"
+FEATURE wi_calc_full3d remcominc 3.3 14-nov-2022 uncounted \
+	VENDOR_STRING=max_hw=64 HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: \
+	Yukun Liu, yukun.liu@telecom-paris.fr, \
+	TelecommParisUniversity" TS_OK SIGN="1401 34C7 4242 4B03 4DFB \
+	D90E 5330 AF18 596F 3646 B548 AC58 A659 0326 373B 11F1 CCF5 \
+	E44C 801C 5C8C 504E 1049 E8E1 B2F4 DCCA CEFB DC6B BBA4 F62B \
+	75C8"
+FEATURE wi_upps remcominc 3.3 14-nov-2022 uncounted \
+	VENDOR_STRING=max_hw=16 HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: \
+	Yukun Liu, yukun.liu@telecom-paris.fr, \
+	TelecommParisUniversity" TS_OK SIGN="1ABB 6605 1E93 3BFF 7B68 \
+	E75F C5EC E8B1 0A3F 11ED 1653 7BD1 0B74 0AFA 01B2 10D3 6240 \
+	1F4B BF8E 16FE 0B30 35C0 B579 7F24 1FEF 6D5B 5D0A 44C9 ED1D \
+	E58F"
+FEATURE wi_upps_real_time remcominc 3.3 14-nov-2022 uncounted \
+	VENDOR_STRING=max_hw=16 HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: \
+	Yukun Liu, yukun.liu@telecom-paris.fr, \
+	TelecommParisUniversity" TS_OK SIGN="07FD 38BF B362 6654 1F4E \
+	6578 31EB 5357 D872 B47A 5609 E0BE EAAC DB50 D934 070A A340 \
+	CBD2 32FB B888 1FE8 A709 1095 7E2A 290E 3C06 DD08 A2AF A202 \
+	990F"
+FEATURE wi_upps_thread remcominc 3.3 14-nov-2022 uncounted \
+	VENDOR_STRING=count=8 HOSTID=8cc84b8112a6 NOTICE="ISSUED TO: \
+	Yukun Liu, yukun.liu@telecom-paris.fr, \
+	TelecommParisUniversity" TS_OK SIGN="0463 4D3A CCC9 917B E03F \
+	3592 4178 5ABC 93B8 3EC5 C352 12C2 282B 26F5 DD33 0851 46D6 \
+	3C2C 85C6 0478 B285 63F4 981C CB59 7FC9 3426 6D99 2F8B EB44 \
+	AE2A"
+##===============================================================================
