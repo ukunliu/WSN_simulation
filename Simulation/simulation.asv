@@ -52,24 +52,12 @@ r = rx_set(1)
 
 rays = raytrace(t, r)
 
-rc = comm.RayTracingChannel(rays{1}, t, r)
-rc.ChannelFiltering = 0
-cir = rc()
-% for i =1:len(rays)
-%     rc[i] = comm.RayTracingChannel(rays{i}, t, r);
-% end
+rtchan = comm.RayTracingChannel(rays, tx_set, rx_set);
+
 %%
 ray_sample = raytrace(tx_set(1,1), rx_set(1,1))
 chan_sample = comm.RayTracingChannel(ray_sample, tx_set(1, 1), rx_set(1, 1))
-%%
-M = 16;       % Modulation order
-numTx = rc.info.NumTransmitElements
 
-x = qammod(randi([0,M-1],1e3,numTx),M);
-
-y = cir(x)
-
-showProfile(cir)
 %%
 [nt, nr] = size(rays)
 for i = 1:nt

@@ -39,6 +39,7 @@ pm = propagationModel('raytracing', ...
 %%
 rays = raytrace(tx_set, rx_new, pm);
 
+
 %%
 rtchan = comm.RayTracingChannel(rays{1},tx_set(1),rx_new)
 
