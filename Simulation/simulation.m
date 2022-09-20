@@ -106,7 +106,7 @@ for i = 1:nt
               tmp = comm.RayTracingChannel(rays{i, j}, tx_set(i), rx_set(j));
 %               tmp.ChannelFiltering = 0;
               [delay, gain] = my_feature(tmp);
-              resp_cell{i, j} = [delay; gain];
+              resp_cell{i, j} = [double(delay); gain];
         end
     end
 end
