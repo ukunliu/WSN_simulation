@@ -18,13 +18,18 @@ y = linspace(lat_s, lat_e, n);
 
 %% transmitter coordination
 clear tx_set
+
+tx_height = 1.5;
+freq = 1e9;
+tx_power = 5;
 for i = 1:n
     for j = 1:n 
         a(i, j)=1;
 
         tx_set(i, j) = txsite("Latitude",Y(i, j),"Longitude", X(i, j), ...
-            "AntennaHeight",1.5, ...
-            "TransmitterFrequency", 1e9);    
+            "AntennaHeight", tx_height, ...
+            "TransmitterFrequency", freq, ...
+            "TransmitterPower", tx_power);    
     end
 end
 
@@ -34,30 +39,42 @@ for i = 1: n_rx/2
     for j = 1: n_rx/2
         a(i, j) = 1;
         rx_set(i, j) = rxsite("Latitude",Y_rx(i, j),"Longitude", X_rx(i, j), "AntennaHeight",30);
-        Y_rx(i, j), X_rx(i, j)
+        Y_rx(i, j), X_rx(i, j);
     end
 end
 
 %%
 pm = propagationModel("raytracing", ...
     "Method","sbr", ...
-    "MaxNumReflections",3);
+    "MaxNumReflections",3, ...
+    "BuildingsMaterial", 'glass', ...
+    "SurfaceMaterial", "concrete");
 
-rays = raytrace(tx_set, rx_set, pm)
+rays = raytrace(tx_set, rx_set, pm);
 
-%% visualization of rays
+%% visualization of rays - Testing
 % raytrace(tx_set, rx_new)
-t = tx_set(6)
+t = tx_set(7)
 r = rx_set(1)
 
 rays = raytrace(t, r)
 
-rtchan = comm.RayTracingChannel(rays, tx_set, rx_set);
+rc = comm.RayTracingChannel(rays{1}, t, r)
+rc.ChannelFiltering = 0
+cir = rc()
 
 %%
 ray_sample = raytrace(tx_set(1,1), rx_set(1,1))
-chan_sample = comm.RayTracingChannel(ray_sample, tx_set(1, 1), rx_set(1, 1))
+chan_sample = comm.RayTracingChannel(ray_sample{1}, tx_set(1, 1), rx_set(1, 1))
+%%
+M = 16;       % Modulation order
+numTx = rc.info.NumTransmitElements
 
+x = qammod(randi([0,M-1],1e3,numTx),M);
+
+y = rc(x)
+
+showProfile(rc)
 %%
 [nt, nr] = size(rays)
 for i = 1:nt
@@ -66,8 +83,25 @@ for i = 1:nt
         [a, b] = size(rays{i, j});
         if b ~= 0
               tmp = comm.RayTracingChannel(rays{i, j}, tx_set(i), rx_set(j));
-              tmp.ChannelFiltering = 0;
+%               tmp.ChannelFiltering = 0;
+                
               ch_cell{i, j} = tmp();
+        end
+    end
+end
+
+
+%% simulation with x and y
+raw_input = ones(1,100).'
+
+for i = 1:nt
+    for j = 1:nr
+        rep_cell{i, j} = 0;
+        [a, b] = size(rays{i, j});
+        if b ~= 0
+              tmp = comm.RayTracingChannel(rays{i, j}, tx_set(i), rx_set(j));
+%               tmp.ChannelFiltering = 0;
+              rep_cell{i, j} = tmp(raw_input);
         end
     end
 end
@@ -82,5 +116,7 @@ rtchan = comm.RayTracingChannel(rays, tx_set, rx_set);
 %%
 ray_sample = raytrace(tx_set(1,1), rx_set(1,1))
 chan_sample = comm.RayTracingChannel(ray_sample, tx_set(1, 1), rx_set(1, 1))
+
+%%
 
 %%
