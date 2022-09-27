@@ -1,4 +1,4 @@
-function meta = generate_simulation_data(dir, coord)
+function meta = generate_simulation_data(coord)
 %Generate dataset (CIR response) based on simulation setup
 
 % sv = siteviewer("Buildings",dir);
@@ -83,6 +83,7 @@ for i = 1:nt
         [a, b] = size(rays{i, j});
         if b ~= 0
               tmp = comm.RayTracingChannel(rays{i, j}, tx_set(i), rx_set(j));
+              tmp.MinimizePropagationDelay = 0;
 %               tmp.ChannelFiltering = 0;
               [delay, gain] = my_feature(tmp);
               resp_cell{i, j} = [double(delay); gain];

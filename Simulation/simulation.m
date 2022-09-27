@@ -82,6 +82,7 @@ rays = raytrace(t, r)
 
 rc = comm.RayTracingChannel(rays{1}, t, r)
 rc.ChannelFiltering = 0
+rc.MinimizePropagationDelay = 0
 cir = rc()
 
 %%
