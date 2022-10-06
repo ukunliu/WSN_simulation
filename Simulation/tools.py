@@ -167,6 +167,9 @@ class VisualizeResult():
         for xtick in box_plot.get_xticks():
             box_plot.text(xtick, self.pipes.d_medians[xtick],self.pipes.d_medians[xtick], 
                     horizontalalignment='center',size='x-small',color='w',weight='semibold', c='k')
+
+            box_plot.text(xtick, self.pipes.d_error[xtick],self.pipes.d_error[xtick], 
+                    horizontalalignment='center',size='x-small',color='w',weight='semibold', c='k')
         plt.title(f'{self.location}, Grid size {self.pipes.grid_lat, self.pipes.grid_lon}')
         
     def scatter_pipes(self):
