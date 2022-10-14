@@ -214,6 +214,20 @@ class VisualizeResult():
             plot_agent(pipes.RX)
             plt.title(f'Outliers in {model}')
 
+    def cdf_plot(self):
+        pipes = self.pipes
+        model_ls = pipes.model_ls
+
+        x = np.arange(len(pipes.dist_all[0])) / (len(pipes.dist_all[0]) - 1)
+
+        for ind, model in enumerate(pipes.model_ls):
+            score = np.sort(pipes.dist_all[ind])
+            plt.plot(score, x, label=f'{model}')
+
+        plt.ylabel('CDF')
+        plt.xlabel('Euclidean Distance error')
+        plt.legend(loc='best')
+
     def outlier_index(self, data):
         q3, q1 = np.percentile(data, [75, 25])
         high_bar = q3 + 1.5 * (q3 - q1)
