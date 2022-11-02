@@ -59,7 +59,7 @@ class Extractor(object):
         self.sigma_lst = []
         self.var_profile = []
 
-    def clean_input(self):
+    def statistical_input(self):
         self.ray_len = []
         self.delay_set = []
 
@@ -81,11 +81,9 @@ class Extractor(object):
         self.sigma_mtx = np.reshape(np.array(self.sigma_lst, dtype='object'), newshape=(S,-1)).T
         return self.theta_mtx, self.sigma_mtx
 
-    def formatting_X(self):
+    def _data_statistics(self):
         self.ray_len = []
         self.delay_set = []
-
-        T, S = self.cir_profile.shape
 
         for chs in self.cir_profile:
             for ch in chs:
@@ -94,7 +92,13 @@ class Extractor(object):
 
         self.max_reflection = max(self.ray_len)
         self.mag = - math.floor(math.log(np.mean(self.delay_set), 10))
+
+
+    def formatting_X(self):
+        self._data_statistics()
         x_pre = []
+        T, S = self.cir_profile.shape
+
         for j in range(T):
             cir_t = [] # channel impulse response for a transmitter
             for i in range(S):
@@ -116,6 +120,32 @@ class Extractor(object):
         self.X = np.array(x_pre)
 
         return self.X
+
+    def amplitute_feature(self, max_len=None):
+        """Extract only amplitute feature from channel impulse response (absolute value)"""
+        self._data_statistics()
+        
+        if not max_len:
+            max_len = self.max_reflection
+
+        x_pre = []
+        T, S = self.cir_profile.shape
+
+        for j in range(T):
+            cir_t = [] # channel impulse response for a transmitter
+            for i in range(S):
+                c_tmp = self.cir_profile[j, i].copy()                
+                _, n = c_tmp.shape
+                c_amp = abs(c_tmp[1, :])                    
+                cir_shaped = np.pad(c_amp, (0, max_len - n), constant_values=0)
+                cir_t.extend(cir_shaped)
+
+            x_pre.append(cir_t)
+
+        self.X = np.array(x_pre)
+
+        return self.X
+
 
 class PipesFitting(object):
     def __init__(self, X, Y, RX) -> None:
@@ -223,9 +253,10 @@ class VisualizeResult():
         for ind, model in enumerate(pipes.model_ls):
             score = np.sort(pipes.dist_all[ind])
             plt.plot(score, x, label=f'{model}')
+            plt.title(model)
 
         plt.ylabel('CDF')
-        plt.xlabel('Euclidean Distance error')
+        plt.xlabel('Euclidean Distance error (m)')
         plt.legend(loc='best')
 
     def outlier_index(self, data):

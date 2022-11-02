@@ -14,6 +14,7 @@ london_square_20_cell = generate_simulation_data(coord_london, 20, 10); % 20 by 
 london_square_50_cell = generate_simulation_data(coord_london, 50, 10);
 london_square_10_cell = generate_simulation_data(coord_london, 10, 10);
 london_square_5_cell = generate_simulation_data(coord_london, 5, 10);
+london_square_100_cell = generate_simulation_data(coord_london, 100, 10);
 
 %%
 paris_square_20_cell = generate_simulation_data(coord_paris, 20, 10)
