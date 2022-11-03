@@ -49,7 +49,7 @@ def outlier_index(data):
     return (data > high_bar) | (data < low_bar)
 
 class Extractor(object):
-    def __init__(self, cir_profile):
+    def __init__(self, cir_profile, RX=None):
         
         self.cir_profile = cir_profile
 
@@ -58,6 +58,7 @@ class Extractor(object):
         self.amp_lst = []
         self.sigma_lst = []
         self.var_profile = []
+        self.RX = RX
 
     def statistical_input(self):
         self.ray_len = []
@@ -97,11 +98,11 @@ class Extractor(object):
     def formatting_X(self):
         self._data_statistics()
         x_pre = []
-        T, S = self.cir_profile.shape
+        self.T, self.S = self.cir_profile.shape
 
-        for j in range(T):
+        for j in range(self.T):
             cir_t = [] # channel impulse response for a transmitter
-            for i in range(S):
+            for i in range(self.S):
                 c_tmp = self.cir_profile[j, i].copy()
                 c_tmp[0, :] = c_tmp[0, :] * 10 ** self.mag # normalize the delay seconds
                 
@@ -129,11 +130,11 @@ class Extractor(object):
             max_len = self.max_reflection
 
         x_pre = []
-        T, S = self.cir_profile.shape
+        self.T, self.S = self.cir_profile.shape
 
-        for j in range(T):
+        for j in range(self.T):
             cir_t = [] # channel impulse response for a transmitter
-            for i in range(S):
+            for i in range(self.S):
                 c_tmp = self.cir_profile[j, i].copy()                
                 _, n = c_tmp.shape
                 c_amp = abs(c_tmp[1, :])                    
@@ -145,6 +146,12 @@ class Extractor(object):
         self.X = np.array(x_pre)
 
         return self.X
+
+    def coord_feature(self):
+        # self.amplitute_feature()
+        coord = np.repeat(self.RX.flatten()[:, None], self.T, axis=1).T
+
+        return np.concatenate((self.X, coord), axis=1)
 
 
 class PipesFitting(object):
