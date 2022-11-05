@@ -6,28 +6,31 @@ from sklearn.model_selection import train_test_split
 import seaborn as sns
 
 
+def distance_tr(TX, RX):
+    """Calculate distance between every tx and rx"""
+    new_dist = []
+    for t in TX:
+        new_dist.append(np.array([
+            geodesic(t, r).m for r in RX
+        ]))
+    return np.array(new_dist)
 
 def read_mat(location='london'): 
     import scipy.io
     meta_data = scipy.io.loadmat(f'./dataset/{location}_cell.mat')
     cir_profile = meta_data[f'{location}_cell']['cir'][0][0]
-    dist = meta_data[f'{location}_cell']['dist'][0][0]
+    # dist = meta_data[f'{location}_cell']['dist'][0][0]
 
     Y = meta_data[f'{location}_cell'][0][0]['tx'].T # coordination of agents (lat, lon)
     RX = meta_data[f'{location}_cell'][0][0]['rx'].T
-    p_a_arr = Y
-    p_i_arr = RX
-    return meta_data, cir_profile, dist, Y, RX, p_a_arr, p_i_arr
+    return meta_data, cir_profile, distance_tr(Y, RX), Y, RX
 
 def dist_from_geo(geo1, geo2):
     return np.array([geodesic(i, j).m for i, j in zip(geo1, geo2)])
 
-def plot_agent(Y, ax=None, ind=None, label=None, c=None):
+def plot_agent(Y, ax=plt, ind=None, label=None, c=None):
     if not ind:
         ind = np.arange(len(Y))
-
-    if not ax:
-        ax = plt
 
     try:
         ax.scatter(Y[ind, 0], Y[ind, 1], label=label, c=c)
