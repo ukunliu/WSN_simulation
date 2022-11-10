@@ -1,4 +1,4 @@
-function meta = generate_simulation_data(coord, n, n_rx)
+function meta = generate_simulation_data(coord, n, n_rx, dir)
 %Generate dataset (CIR response) based on simulation setup
 
 % sv = siteviewer("Buildings",dir);
@@ -17,6 +17,7 @@ y = linspace(lat_s, lat_e, n);
 
 [X_rx, Y_rx] = meshgrid( X(1, n/n_rx:n/n_rx * 2:n), Y(n/n_rx: n/n_rx*2 : n, 1));
 
+viewer = siteviewer('Building', dir)
 % elevation calculation for transmitter
 for i = 1:n
     for j = 1:n 
@@ -69,7 +70,7 @@ end
 %
 pm = propagationModel("raytracing", ...
     "Method","sbr", ...
-    "MaxNumReflections",3, ...
+    "MaxNumReflections",2, ...
     "BuildingsMaterial", 'glass', ...
     "SurfaceMaterial", "concrete");
 

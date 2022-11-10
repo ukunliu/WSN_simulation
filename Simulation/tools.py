@@ -15,9 +15,10 @@ def distance_tr(TX, RX):
         ]))
     return np.array(new_dist)
 
-def read_mat(location='london'): 
+def read_mat(dir, location='london'): 
     import scipy.io
-    meta_data = scipy.io.loadmat(f'./dataset/{location}_cell.mat')
+    # meta_data = scipy.io.loadmat(f'./dataset/{location}_cell.mat')
+    meta_data = scipy.io.loadmat(dir)
     cir_profile = meta_data[f'{location}_cell']['cir'][0][0]
     # dist = meta_data[f'{location}_cell']['dist'][0][0]
 
@@ -138,9 +139,15 @@ class Extractor(object):
         for j in range(self.T):
             cir_t = [] # channel impulse response for a transmitter
             for i in range(self.S):
-                c_tmp = self.cir_profile[j, i].copy()                
-                _, n = c_tmp.shape
-                c_amp = abs(c_tmp[1, :])                    
+                c_tmp = self.cir_profile[j, i].copy()   
+                print(c_tmp)             
+                m, n = c_tmp.shape
+                print(c_tmp, m, n)
+                if m < 2:
+                    print(c_tmp)
+                    c_amp = 0
+                else:
+                    c_amp = abs(c_tmp[1, :])                    
                 cir_shaped = np.pad(c_amp, (0, max_len - n), constant_values=0)
                 cir_t.extend(cir_shaped)
 

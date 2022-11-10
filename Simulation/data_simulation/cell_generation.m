@@ -10,15 +10,25 @@ coord_paris = [48.8296, 48.83859227831143, 2.3132, 2.3268200662724703];
 coord_toulouse = [43.6048, 43.6138005261109, 1.4393, 1.4516859475885562];
 
 %%
-london_square_20_cell = generate_simulation_data(coord_london, 20, 10); % 20 by 20 grids for tx, 5 by 5 grid for rx
-london_square_50_cell = generate_simulation_data(coord_london, 50, 10);
-london_square_10_cell = generate_simulation_data(coord_london, 10, 10);
-london_square_5_cell = generate_simulation_data(coord_london, 5, 10);
-london_square_100_cell = generate_simulation_data(coord_london, 100, 10);
+base_dir = '..\maps\';
+pr = 'paris.osm';
+ld = 'london.osm';
+tl = 'toulouse.osm';
+
+ld_dir = strcat(base_dir, ld);
+pr_dir =  strcat(base_dir, pr);
+tl_dir = strcat(base_dir, tl);
 
 %%
-paris_square_20_cell = generate_simulation_data(coord_paris, 20, 10)
-toulouse_square_20_cell = generate_simulation_data(coord_toulouse, 20, 10)
+london_square_20_cell = generate_simulation_data(coord_london, 20, 10, ld_dir); % 20 by 20 grids for tx, 5 by 5 grid for rx
+% london_square_50_cell = generate_simulation_data(coord_london, 50, 10);
+% london_square_10_cell = generate_simulation_data(coord_london, 10, 10);
+% london_square_5_cell = generate_simulation_data(coord_london, 5, 10);
+% london_square_100_cell = generate_simulation_data(coord_london, 100, 10);
+
+%%
+paris_square_20_cell = generate_simulation_data(coord_paris, 20, 10, pr_dir)
+toulouse_square_20_cell = generate_simulation_data(coord_toulouse, 20, 10, tl_dir)
 
 %%
 [m, t, r, rays] = generate_test(coord_london, 20, 20, 10);
