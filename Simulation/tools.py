@@ -212,10 +212,10 @@ class VisualizeResult():
         plt.ylabel('Error on test set (m)')
 
         for xtick in box_plot.get_xticks():
-            box_plot.text(xtick, self.pipes.d_medians[xtick],self.pipes.d_medians[xtick], 
-                    horizontalalignment='center',size='x-small',color='w',weight='semibold', c='k')
+            # box_plot.text(xtick, self.pipes.d_medians[xtick], round(self.pipes.d_medians[xtick], 2), 
+            #         horizontalalignment='center',size='x-small',color='w',weight='semibold', c='k')
 
-            box_plot.text(xtick, self.pipes.d_error[xtick],self.pipes.d_error[xtick], 
+            box_plot.text(xtick, self.pipes.d_error[xtick], round(self.pipes.d_error[xtick], 2), 
                     horizontalalignment='center',size='x-small',color='w',weight='semibold', c='k')
         plt.title(f'{self.location}, Grid size {self.pipes.grid_lat, self.pipes.grid_lon}')
         

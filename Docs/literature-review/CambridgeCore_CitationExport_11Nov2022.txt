@@ -1,0 +1,1 @@
+@book{yang_zhang_dai_pan_2020, place={Cambridge}, title={Transfer Learning}, DOI={10.1017/9781139061773}, publisher={Cambridge University Press}, author={Yang, Qiang and Zhang, Yu and Dai, Wenyuan and Pan, Sinno Jialin}, year={2020}}
