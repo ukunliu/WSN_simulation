@@ -1,6 +1,5 @@
 %%
-% To validate the cell generated
-% coord_london = [51.5108, 51.5194, -0.0988, -0.0741];
+% map coordinations
 coord_sahara = [24.2920, 24.3006, 7.0237, 7.0484];
 
 coord_london = [51.5108, 51.519788107578044, -0.0988, -0.08439578091555248];
@@ -37,3 +36,6 @@ toulouse_square_20_cell = generate_simulation_data(coord_toulouse, 20, 10, tl_di
 rtchan = comm.RayTracingChannel(rays{1},t(1),rx(1));
 rtchan.MinimizePropagationDelay = 0;
 showProfile(rtchan);
+
+%%
+rssi_london = generate_rssi(coord_london, 20, 10, ld_dir);

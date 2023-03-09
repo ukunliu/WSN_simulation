@@ -1,8 +1,6 @@
 function meta = generate_simulation_data(coord, n, n_rx, dir)
 %Generate dataset (CIR response) based on simulation setup
 
-% sv = siteviewer("Buildings",dir);
-% latitude: 51.5108-51.5194; longitude:-0.0988 - -0.0741
 lat_s = coord(1);
 lat_e = coord(2);
 lon_s = coord(3);
@@ -11,14 +9,17 @@ lon_e = coord(4);
 % n_rx = 4;
 % n_tx = n - n_rx;
 
+% Creat 2D mesh within map
 x = linspace(lon_s, lon_e, n);
 y = linspace(lat_s, lat_e, n);
 [X, Y] = meshgrid(x, y);
 
 [X_rx, Y_rx] = meshgrid( X(1, n/n_rx:n/n_rx * 2:n), Y(n/n_rx: n/n_rx*2 : n, 1));
 
+% Open 3D building model
 viewer = siteviewer('Building', dir)
-% elevation calculation for transmitter
+
+% Elevation for each node
 for i = 1:n
     for j = 1:n 
         a(i, j)=1;
@@ -30,9 +31,9 @@ end
 ele = elevation(ele_set);
 ele_matrix = reshape(ele, n, n);
 
-% transmitter coordination
+ele_matrix = zeros(n, n);
 
-
+% set up transmitters
 tx_height = 1.5;
 freq = 1e9;
 tx_power = 5;
@@ -47,8 +48,7 @@ for i = 1:n
     end
 end
 
-% receiver coordination
-
+% set up receviers
 for i = 1: n_rx/2
     for j = 1: n_rx/2
         a(i, j) = 1;
@@ -67,16 +67,17 @@ for i = 1: n_rx/2
     end
 end
 
-%
+% propagation model
 pm = propagationModel("raytracing", ...
     "Method","sbr", ...
     "MaxNumReflections",2, ...
     "BuildingsMaterial", 'glass', ...
     "SurfaceMaterial", "concrete");
 
+% simulate rays between each tx and rx 
 rays = raytrace(tx_set, rx_set, pm);
 
-%
+% collect cir profile from simulation rays
 [nt, nr] = size(rays);
 for i = 1:nt
     for j = 1:nr
@@ -92,6 +93,7 @@ for i = 1:nt
     end
 end
 
+% merge data into meta cell
 meta.cir = resp_cell;
 meta.tx = [tx_set.Latitude; tx_set.Longitude];
 meta.rx = [rx_set.Latitude; rx_set.Longitude];

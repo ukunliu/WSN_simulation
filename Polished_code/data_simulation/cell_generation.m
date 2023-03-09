@@ -1,0 +1,32 @@
+%% map coordination 1km by 1km area in cities
+coord_sahara = [24.2920, 24.3006, 7.0237, 7.0484];
+
+coord_london = [51.5108, 51.519788107578044, -0.0988, -0.08439578091555248];
+
+coord_paris = [48.8296, 48.83859227831143, 2.3132, 2.3268200662724703]; 
+
+coord_toulouse = [43.6048, 43.6138005261109, 1.4393, 1.4516859475885562];
+
+%% access to open street file
+base_dir = '..\maps\';
+pr = 'paris.osm';
+ld = 'london.osm';
+tl = 'toulouse.osm';
+
+ld_dir = strcat(base_dir, ld);
+pr_dir =  strcat(base_dir, pr);
+tl_dir = strcat(base_dir, tl);
+
+%% generate simulation data for london
+london_square_20_cell = generate_simulation_data(coord_london, 20, 10, ld_dir); % 20 by 20 grids for tx, 5 by 5 grid for rx
+% london_square_50_cell = generate_simulation_data(coord_london, 50, 10);
+% london_square_10_cell = generate_simulation_data(coord_london, 10, 10);
+% london_square_5_cell = generate_simulation_data(coord_london, 5, 10);
+% london_square_100_cell = generate_simulation_data(coord_london, 100, 10);
+
+%% simulation for paris and toulouse
+paris_square_20_cell = generate_simulation_data(coord_paris, 20, 10, pr_dir)
+toulouse_square_20_cell = generate_simulation_data(coord_toulouse, 20, 10, tl_dir)
+
+%%
+rssi_london = generate_rssi(coord_london, 20, 10, ld_dir);
