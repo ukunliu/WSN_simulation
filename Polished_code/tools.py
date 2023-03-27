@@ -173,7 +173,8 @@ class Extractor(object):
                         cir_shaped = np.pad(c_tmp, \
                             ((0,2-m), (0, max_len-n)), \
                                 constant_values=0).flatten() # padding 0 to shape of (2, max_len)
-                cir_t.append(np.array(cir_shaped, dtype='float'))
+                # print(cir_shaped.shape, (m,n), cir_shaped)
+                cir_t.append(np.array(cir_shaped, dtype='float').flatten())
 
             x_pre.append(np.array(cir_t).flatten())
 
