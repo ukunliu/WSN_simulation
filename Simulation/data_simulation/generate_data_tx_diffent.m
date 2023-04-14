@@ -1,5 +1,6 @@
 function meta = generate_simulation_data(coord, n, n_rx, dir)
 %Generate dataset (CIR response) based on simulation setup
+%locations of transmitters here is not uniformly distributed but randomly
 
 lat_s = coord(1);
 lat_e = coord(2);
@@ -81,6 +82,8 @@ pm = propagationModel("raytracing", ...
     "BuildingsMaterial", 'glass', ...
     "SurfaceMaterial", "concrete");
 
+% pm.MaxRelativePathLoss = 50;
+
 % simulate rays between each tx and rx 
 rays = raytrace(tx_set, rx_set, pm);
 
@@ -89,6 +92,7 @@ rays = raytrace(tx_set, rx_set, pm);
 for i = 1:nt
     for j = 1:nr
         resp_cell{i, j} = 0;
+        sigstrength_cell{i, j} = 0;
         [a, b] = size(rays{i, j});
         if b ~= 0
               tmp = comm.RayTracingChannel(rays{i, j}, tx_set(i), rx_set(j));
@@ -96,6 +100,9 @@ for i = 1:nt
 %               tmp.ChannelFiltering = 0;
               [delay, gain] = my_feature(tmp);
               resp_cell{i, j} = [double(delay); gain];
+
+              sig = sigstrength(rx_set(j), tx_set(i), pm);
+              sigstrength_cell{i, j} = sig;
         end
     end
 end
@@ -105,5 +112,5 @@ meta.cir = resp_cell;
 meta.tx = [tx_set.Latitude; tx_set.Longitude];
 meta.rx = [rx_set.Latitude; rx_set.Longitude];
 meta.dist = distance(rx_set, tx_set);
-
+meta.sigstrength = sigstrength_cell;
 end

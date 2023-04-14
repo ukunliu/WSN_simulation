@@ -1,4 +1,4 @@
-function  [pathDelay, pathGain] = my_feature(obj)
+function  [pathDelays, pathGains] = my_feature(obj)
     %showProfile Visualize temporal and spatial profiles of the channel
     %   showProfile(CHAN) plots the power delay profile (PDP), angle of
     %   departure (AoD), and angle of arrival (AoA) information for the ray

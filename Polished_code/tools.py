@@ -328,7 +328,7 @@ class VisualizeResult():
             plot_agent(pipes.RX)
             plt.title(f'Outliers in {model}')
 
-    def cdf_plot(self):
+    def cdf_plot(self, ax=plt):
         pipes = self.pipes
         model_ls = pipes.model_ls
 
@@ -336,14 +336,53 @@ class VisualizeResult():
 
         for ind, model in enumerate(pipes.model_ls):
             score = np.sort(pipes.dist_all[ind])
-            plt.plot(score, x, '--', label=f'{model}')
+            ax.plot(score, x, '--', label=f'{model}')
 
-        plt.ylabel('CDF')
-        plt.xlabel('Euclidean Distance error (m)')
-        plt.legend(loc='best')
+        ax.ylabel('CDF')
+        ax.xlabel('Euclidean Distance error (m)')
+        ax.legend(loc='best')
 
     def outlier_index(self, data):
         q3, q1 = np.percentile(data, [75, 25])
         high_bar = q3 + 1.5 * (q3 - q1)
         low_bar = q1 - 1.5 * (q3 - q1)
         return (data > high_bar) | (data < low_bar)
+
+
+def sinc_filter(cirs, t, snr=20):
+    '''Adding sinc filtering to cirs'''
+    T, S = cirs.shape
+    cir_full_noise = []
+    cir_pure = []
+    # snr = 20
+
+    x_pre = []
+    for j in range(T):
+        cir_t = [] # channel impulse response for a transmitter
+        for i in range(S):
+            status, _ = cirs[j, i].shape
+            if status == 1:
+                x_n = np.zeros_like(t)
+                y = x_n
+                # nan_idx.append([j, i]) # index of no-signal tx
+            else:
+                tau, amp = cirs[j, i].copy()
+                tau_noise = np.random.normal(np.real(tau), .05 * np.real(tau))
+                ans = np.repeat(t[:, None], len(tau), axis=1) - tau_noise
+                y = np.sinc(W * ans) @ amp
+                # c_tmp_noise = noise_gen(y, snr)
+                n = len(y)
+                noise = np.random.randn(n, 2).view(np.complex128)
+                signal_power = np.sum(y * y) / n
+                signal_db = 10 * np.log10(signal_power)
+                noise_power = np.sum(noise * noise) / n
+                noise_var = signal_power / (10 ** (snr/10))
+                # noise_var = 10 ** ((signal_db - snr) / 10)
+                # # print(noise_var)
+                noise_gaussian = np.sqrt(noise_var / noise_power) * noise
+                # noise_gaussian = np.random.normal(0, np.sqrt(noise_var), n).view(np.complex128)
+            x_n = y + np.squeeze(noise_gaussian)
+            cir_full_noise.append(x_n)
+            cir_pure.append(cirs[j, i])
+
+    return cir_full_noise, cir_pure
