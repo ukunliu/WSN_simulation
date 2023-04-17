@@ -1,6 +1,9 @@
 numpy
-tensorflow<2.11
 pandas
 matplotlib
 scikit-learn
 scipy
+joblib
+geopy
+seaborn
+lightgbm
