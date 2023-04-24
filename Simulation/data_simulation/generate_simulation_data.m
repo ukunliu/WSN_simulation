@@ -19,7 +19,7 @@ y = linspace(lat_s, lat_e, n);
 % Open 3D building model
 viewer = siteviewer('Building', dir)
 
-% Elevation for each node
+% Elevation for each node tx
 for i = 1:n
     for j = 1:n 
         a(i, j)=1;
@@ -79,6 +79,9 @@ rays = raytrace(tx_set, rx_set, pm);
 
 % collect cir profile from simulation rays
 [nt, nr] = size(rays);
+
+rssi = zeros(nt, nr);
+
 for i = 1:nt
     for j = 1:nr
         resp_cell{i, j} = 0;
@@ -89,6 +92,9 @@ for i = 1:nt
 %               tmp.ChannelFiltering = 0;
               [delay, gain] = my_feature(tmp);
               resp_cell{i, j} = [double(delay); gain];
+              rssi(i, j) = sigstrength(rx_set(j), tx_set(i), pm);
+
+              i, j
         end
     end
 end
@@ -98,5 +104,7 @@ meta.cir = resp_cell;
 meta.tx = [tx_set.Latitude; tx_set.Longitude];
 meta.rx = [rx_set.Latitude; rx_set.Longitude];
 meta.dist = distance(rx_set, tx_set);
+meta.rssi = rssi;
+meta.elevation = ele;
 
 end

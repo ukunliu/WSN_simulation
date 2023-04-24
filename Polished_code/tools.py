@@ -349,19 +349,18 @@ class VisualizeResult():
         return (data > high_bar) | (data < low_bar)
 
 
-def sinc_filter(cirs, t, snr=20):
+def sinc_filter(cirs, t, W, snr=20):
     '''Adding sinc filtering to cirs'''
     T, S = cirs.shape
     cir_full_noise = []
-    cir_pure = []
-    # snr = 20
-
+    # cir_pure = []
+    cir_sinc = []
     x_pre = []
     for j in range(T):
         cir_t = [] # channel impulse response for a transmitter
         for i in range(S):
             status, _ = cirs[j, i].shape
-            if status == 1:
+            if status == 1: # if no cir observed
                 x_n = np.zeros_like(t)
                 y = x_n
                 # nan_idx.append([j, i]) # index of no-signal tx
@@ -381,8 +380,42 @@ def sinc_filter(cirs, t, snr=20):
                 # # print(noise_var)
                 noise_gaussian = np.sqrt(noise_var / noise_power) * noise
                 # noise_gaussian = np.random.normal(0, np.sqrt(noise_var), n).view(np.complex128)
-            x_n = y + np.squeeze(noise_gaussian)
-            cir_full_noise.append(x_n)
-            cir_pure.append(cirs[j, i])
+                x_n = y + np.squeeze(noise_gaussian)
 
-    return cir_full_noise, cir_pure
+            cir_full_noise.append(x_n)
+            cir_sinc.append(y)
+            # cir_pure.append(cirs[j, i])
+
+    return cir_full_noise, cir_sinc
+
+
+def optimal_search(RX, dist_pred):
+    """find x through distance and rx coordinates"""
+    from scipy.optimize import minimize, Bounds
+
+    def dist2coord(x, coords, dists):
+
+        d = np.array([geodesic(x, coord).m for coord in coords])
+
+        return np.linalg.norm([d-dists])**2
+
+    x_pred = []
+
+    bounds = Bounds([0, -90], [90, 90])
+
+    for p in dist_pred:
+        res = minimize(
+        dist2coord,
+        RX[0],
+        args=(RX, p),
+        method='L-BFGS-B',
+        options={
+            'ftol':1e-5,         # Tolerance
+            'maxiter': 1e+7      # Maximum iterations
+        },
+        bounds=bounds
+    )   
+
+        x_pred.append(res.x)
+
+    return np.array(x_pred)

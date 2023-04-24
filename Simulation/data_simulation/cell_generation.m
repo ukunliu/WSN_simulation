@@ -23,11 +23,11 @@ tl_dir = strcat(base_dir, tl);
 big_ld_dir = 'C:\Users\11740\Desktop\export.osm';
 
 %%
-london_square_20_cell = generate_simulation_data(coord_london, 20, 10, ld_dir); % 20 by 20 grids for tx, 5 by 5 grid for rx
+% london_square_20_cell = generate_simulation_data(coord_london, 100, 10, ld_dir); % 20 by 20 grids for tx, 5 by 5 grid for rx
 % london_square_50_cell = generate_simulation_data(coord_london, 50, 10);
 % london_square_10_cell = generate_simulation_data(coord_london, 10, 10);
 % london_square_5_cell = generate_simulation_data(coord_london, 5, 10);
-% london_square_100_cell = generate_simulation_data(coord_london, 100, 10);
+london_square_100_cell = generate_simulation_data(coord_london, 100, 10, ld_dir);
 
 %% Generate data in London but diffent tx locations with same rx and same area (creating observation set)
 london_square_20_observation_cell = generate_simulation_data(coord_london, 20, 10, ld_dir);
@@ -47,7 +47,7 @@ rtchan.MinimizePropagationDelay = 0;
 showProfile(rtchan);
 
 %%
-rssi_london = generate_rssi(coord_london, 20, 10, ld_dir);
+rssi_london = generate_rssi(coord_london, 100, 10, ld_dir);
 
 
 %% get elevation

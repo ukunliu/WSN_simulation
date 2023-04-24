@@ -83,6 +83,7 @@ rssi = zeros(nt, nr);
 for i = 1:nt
     for j = 1:nr
         rssi(i, j) = sigstrength(rx_set(j), tx_set(i), pm);
+        i
     end
 end
 
