@@ -83,6 +83,7 @@ rays = raytrace(tx_set, rx_set, pm);
 rssi = zeros(nt, nr);
 
 for i = 1:nt
+    i
     for j = 1:nr
         resp_cell{i, j} = 0;
         [a, b] = size(rays{i, j});
@@ -93,8 +94,6 @@ for i = 1:nt
               [delay, gain] = my_feature(tmp);
               resp_cell{i, j} = [double(delay); gain];
               rssi(i, j) = sigstrength(rx_set(j), tx_set(i), pm);
-
-              i, j
         end
     end
 end

@@ -366,9 +366,11 @@ def sinc_filter(cirs, t, W, snr=20):
                 # nan_idx.append([j, i]) # index of no-signal tx
             else:
                 tau, amp = cirs[j, i].copy()
-                tau_noise = np.random.normal(np.real(tau), .05 * np.real(tau))
+                tau_noise = np.random.normal(np.real(tau), 1/snr * np.real(tau))
                 ans = np.repeat(t[:, None], len(tau), axis=1) - tau_noise
+                ans_pure = ans = np.repeat(t[:, None], len(tau), axis=1) - tau
                 y = np.sinc(W * ans) @ amp
+                y_pure = np.sinc(W * ans_pure) @ amp
                 # c_tmp_noise = noise_gen(y, snr)
                 n = len(y)
                 noise = np.random.randn(n, 2).view(np.complex128)
@@ -383,7 +385,7 @@ def sinc_filter(cirs, t, W, snr=20):
                 x_n = y + np.squeeze(noise_gaussian)
 
             cir_full_noise.append(x_n)
-            cir_sinc.append(y)
+            cir_sinc.append(y_pure)
             # cir_pure.append(cirs[j, i])
 
     return cir_full_noise, cir_sinc

@@ -24,7 +24,7 @@ big_ld_dir = 'C:\Users\11740\Desktop\export.osm';
 
 %%
 % london_square_20_cell = generate_simulation_data(coord_london, 100, 10, ld_dir); % 20 by 20 grids for tx, 5 by 5 grid for rx
-% london_square_50_cell = generate_simulation_data(coord_london, 50, 10);
+london_square_50_cell = generate_simulation_data(coord_london, 50, 10, ld_dir);
 % london_square_10_cell = generate_simulation_data(coord_london, 10, 10);
 % london_square_5_cell = generate_simulation_data(coord_london, 5, 10);
 london_square_100_cell = generate_simulation_data(coord_london, 100, 10, ld_dir);
@@ -47,10 +47,11 @@ rtchan.MinimizePropagationDelay = 0;
 showProfile(rtchan);
 
 %%
-rssi_london = generate_rssi(coord_london, 100, 10, ld_dir);
+rssi_london_50 = generate_rssi(coord_london, 50, 10, ld_dir);
 
 
 %% get elevation
 ld_tx_ele = get_elevation(coord_london, 20, ld_dir);
+
 %% 
 ld_rx_ele = get_elevation(coord_london, 5, ld_dir);
